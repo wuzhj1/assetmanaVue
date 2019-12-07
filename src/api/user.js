@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/user/login',
+    url: '/api/login',
     method: 'post',
     data
   })
@@ -10,15 +10,21 @@ export function login(data) {
 
 export function getInfo(token) {
   return request({
-    url: '/user/info',
+    url: '/api/info',
     method: 'get',
-    params: { token }
+    // params: { token },
+    headers:{
+      "token":token
+    },
+    baseURL:'http://127.0.0.1:8080'
   })
 }
 
 export function logout() {
   return request({
-    url: '/user/logout',
-    method: 'post'
+    url: '/api/logout',
+    method: 'get',
+    baseURL:'http://127.0.0.1:8080'
+
   })
 }
