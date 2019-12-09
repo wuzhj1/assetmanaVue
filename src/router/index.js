@@ -36,13 +36,13 @@ export const constantRoutes = [
     component: () => import('@/views/login/index'),
     hidden: true
   },
-
+  
   {
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
   },
-
+  
   {
     path: '/',
     component: Layout,
@@ -73,6 +73,34 @@ export const constantRoutes = [
         name: 'Tree',
         component: () => import('@/views/tree/index'),
         meta: { title: 'Tree', icon: 'tree' }
+      }
+    ]
+  },
+
+  {
+    path: '/blogmana',
+    component: Layout,
+    redirect: '/blogmana/bloglist',
+    name: '博客管理',
+    meta: { title: '博客管理', icon: 'example',role: ['admin','super_editor'] },
+    children: [
+      {
+        path: 'bloglist',
+        name: '文章管理',
+        component: () => import('@/views/blogMana/bloglist/index'),
+        meta: { title: '文章管理', icon: 'table' }
+      },
+      {
+        path: 'blogedit',
+        name: '文章编辑',
+        component: () => import('@/views/blogMana/blogedit/index'),
+        meta: { title: '文章编辑', icon: 'tree' }
+      },
+      {
+        path: 'commentmana',
+        name: '评论管理',
+        component: () => import('@/views/blogMana/commentMana/index'),
+        meta: { title: '评论管理', icon: 'tree' }
       }
     ]
   },
