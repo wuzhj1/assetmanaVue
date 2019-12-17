@@ -56,125 +56,43 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
+    path: '/basicrecord',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    redirect: '',
+    name: '基本档案',
+    meta: { title: '基本档案', icon: 'dashboard', breadcrumb: false },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: '/assetcate',
+        component: ()=>import('@/views/basicRecord/assetCategory/index'),
+        name: '资产类别',
+        meta: { title: '资产类别', icon: 'dashboard', breadcrumb: true },
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
+        path: '/addreduce',
+        component: () => import('@/views/basicRecord/addReduce/index'),
+        name: '增减方式',
+        meta: { title: '增减方式', icon: 'dashboard', breadcrumb: true },
+      },
+      {
+        path: '/usestate',
+        component: () => import('@/views/basicRecord/useState/index'),
+        name: '使用状况',
+        meta: { title: '使用状况', icon: 'dashboard', breadcrumb: true },
+      },
+      {
+        path: '/depmethod',
+        component: () => import('@/views/basicRecord/depMethod/index'),
+        name: '折旧方法',
+        meta: { title: '折旧方法', icon: 'dashboard', breadcrumb: true },
+      },
     ]
   },
 
-  {
-    path: '/blogmana',
-    component: Layout,
-    redirect: '/blogmana/bloglist',
-    name: '博客管理',
-    meta: { title: '博客管理', icon: 'example',role: ['admin','super_editor'] },
-    children: [
-      {
-        path: 'bloglist',
-        name: '文章管理',
-        component: () => import('@/views/blogMana/bloglist/index'),
-        meta: { title: '文章管理', icon: 'table' }
-      },
-      {
-        path: 'blogedit',
-        name: '文章编辑',
-        component: () => import('@/views/blogMana/blogedit/index'),
-        meta: { title: '文章编辑', icon: 'tree' }
-      },
-      {
-        path: 'commentmana',
-        name: '评论管理',
-        component: () => import('@/views/blogMana/commentMana/index'),
-        meta: { title: '评论管理', icon: 'tree' }
-      }
-    ]
-  },
 
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
+  
 
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
+  
 
   {
     path: 'external-link',
@@ -190,6 +108,10 @@ export const constantRoutes = [
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
+
+//从后端获取的路由
+export const asyncRoutes = []
+
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
