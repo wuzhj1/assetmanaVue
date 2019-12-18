@@ -1,11 +1,14 @@
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
-
+import { constantRoutes,notfound } from '@/router/index';
+import menuFormat from '@/utils/menuFormat'
 const state = {
   token: getToken(),
   name: '',
-  avatar: ''
+  avatar: '',
+  routers: constantRoutes,
+
 }
 
 const mutations = {
@@ -17,6 +20,9 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_ROUTERS: (state, addrouter) => {
+    state.routers = constantRoutes.concat(addrouter).concat(notfound); //菜单显示
   }
 }
 
@@ -46,10 +52,11 @@ const actions = {
         //   reject('Verification failed, please Login again.')
         // }
 
-        const { name, avatar } = data
+        const { name, avatar, routers } = data
 
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
+        commit('SET_ROUTERS', menuFormat(routers))
         resolve(data)
       }).catch(error => {
         reject(error)

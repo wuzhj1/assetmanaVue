@@ -54,6 +54,7 @@ export default {
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      // this.$router.push(`/login`)
     }
   }
 }
@@ -72,7 +73,7 @@ export default {
     height: 100%;
     float: left;
     cursor: pointer;
-    transition: background .3s;
+    transition: background 0.3s;
     -webkit-tap-highlight-color:transparent;
 
     &:hover {
