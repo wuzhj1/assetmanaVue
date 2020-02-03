@@ -53,7 +53,7 @@ const actions = {
         // }
 
         const { name, avatar, routers } = data
-
+        
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
         commit('SET_ROUTERS', menuFormat(routers))

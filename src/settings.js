@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '博客管理系统',
+  title: '固定资产管理系统',
 
   /**
    * @type {boolean} true | false
