@@ -59,16 +59,14 @@
   </div>
 </template>
 <script>
-import ButtonGroup from "@/components/ButtonGroup/index";
-import UniversalTable from "@/components/UniversalTable/index";
+
 import { getAllRoles, addrole, deleteRole, updateRole } from "@/api/role";
 import formatTreeData from '@/utils/formatTreeData';
 import { Message } from "element-ui";
 import {getTreeMenus} from '@/api/treeMenus'
 export default {
   components: {
-    ButtonGroup,
-    UniversalTable
+    
   },
   data() {
     return {
@@ -116,9 +114,9 @@ export default {
       });
     },
 
-    submit(btnState) {
+    submit() {
       const _this = this;
-      if (btnState === "新增") {
+      if (this.btnState === "新增") {
         addrole(_this.role).then(resp => {
           const success = resp.success;
           if (success) {
@@ -141,7 +139,7 @@ export default {
           }
         });
       }
-      btnState="";
+      this.btnState="";
     },
     delete() {
       const _this = this;
