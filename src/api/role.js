@@ -30,3 +30,19 @@ export function updateRole(data) {
     data: data
   });
 }
+
+export function getdefaultMenus(data) {
+  return request({
+    url: "/role/getdefaultmenus",
+    method: "post",
+    data: data
+  });
+}
+
+export function setMenuRole(data) {
+  return request({
+    url: "/role/setmenurole",
+    method: "post",
+    data:data
+  })
+}

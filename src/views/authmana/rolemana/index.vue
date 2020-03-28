@@ -31,7 +31,14 @@
     </el-table>
 
     <el-dialog title="角色菜单分配" :visible.sync="authDialogVisible">
-      <el-tree :data="this.treeData" show-checkbox></el-tree>
+      <el-tree 
+        :data="this.treeData" 
+        show-checkbox
+        node-key="id"
+        ref="tree"
+        :default-checked-keys="this.defaultSelectedNOde"
+      ></el-tree>
+      <el-button @click="this.submitMenuRole">确定</el-button>
     </el-dialog>
 
     <el-dialog
@@ -60,7 +67,7 @@
 </template>
 <script>
 
-import { getAllRoles, addrole, deleteRole, updateRole } from "@/api/role";
+import { getAllRoles, addrole, deleteRole, updateRole,getdefaultMenus,setMenuRole } from "@/api/role";
 import formatTreeData from '@/utils/formatTreeData';
 import { Message } from "element-ui";
 import {getTreeMenus} from '@/api/treeMenus'
@@ -79,8 +86,10 @@ export default {
         nameZh: "",
         remark: ""
       },
+      defaultSelectedNOde:[],
       selectedList: [],
-      treeData: []
+      treeData: [],
+      
     };
   },
   created() {
@@ -95,20 +104,56 @@ export default {
         _this.treeData=resp.data.data;
       })
       
-      this.authDialogVisible = true;
+      if(this.selectedList.length==1){
+        getdefaultMenus({"rid" : _this.selectedList[0]}).then(res=>{
+          _this.defaultSelectedNOde=res.data.mid;
+        })
+        this.authDialogVisible = true;
+      }else{
+        Message.info("请选择一个角色!");
+      }
+        
+      
     },
 
+    submitMenuRole(){
+      let mids=this.$refs.tree.getCheckedKeys();
+      let rid=this.selectedList[0];
+      let isAdd=mids.length>this.defaultSelectedNOde.length;
+      let formMids=[];
+      if(isAdd){
+        for(var mid of mids){
+          if(!this.defaultSelectedNOde.includes(mid)){
+            formMids.push(mid);
+          }
+        }
+      }else{
+        for(var de of this.defaultSelectedNOde){
+          if(!mids.includes(de)){
+            formMids.push(de);
+          }
+        }
+      }
+
+      console.log("mids:"+mids);
+      console.log("isAdd"+isAdd);
+      console.log("formMids"+formMids);
+      console.log("defaultseelect"+this.defaultSelectedNOde);
+      setMenuRole({"mids":formMids,"rid":rid,"isAdd":isAdd}).then(res=>{
+        console.log(res.data);
+      })
+      this.authDialogVisible = false;
+    },
     fetchData() {
       let _this = this;
       getAllRoles().then(res => {
         _this.tableData = res.data.roles;
       });
+      
     },
     selectRow(selection, row) {
       const _this = this;
       this.selectedList = [];
-      console.log(selection);
-
       selection.forEach(item => {
         _this.selectedList.push(item.id);
       });
