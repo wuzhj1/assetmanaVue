@@ -1,6 +1,6 @@
 <template>
-  <div>
-      资产调拨
+  <div class="app-container">
+      资产信息变更
   </div>
 </template>
 

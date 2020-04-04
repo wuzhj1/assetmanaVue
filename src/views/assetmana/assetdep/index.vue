@@ -1,6 +1,6 @@
 <template>
-  <div>
-      资产领用
+  <div class="app-container">
+      折旧
   </div>
 </template>
 

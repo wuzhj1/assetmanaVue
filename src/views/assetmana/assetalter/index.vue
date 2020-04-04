@@ -1,6 +1,6 @@
 <template>
-  <div>
-        <svg-icon icon-class="password"  class-name='custom-class' />
+  <div class="app-container">
+      资产录入
   </div>
 </template>
 

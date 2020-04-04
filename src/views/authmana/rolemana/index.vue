@@ -135,13 +135,16 @@ export default {
         }
       }
 
-      console.log("mids:"+mids);
-      console.log("isAdd"+isAdd);
-      console.log("formMids"+formMids);
-      console.log("defaultseelect"+this.defaultSelectedNOde);
-      setMenuRole({"mids":formMids,"rid":rid,"isAdd":isAdd}).then(res=>{
-        console.log(res.data);
-      })
+      // console.log("mids:"+mids);
+      // console.log("isAdd"+isAdd);
+      // console.log("formMids"+formMids);
+      // console.log("defaultseelect"+this.defaultSelectedNOde);
+      if(formMids.length>0){
+        setMenuRole({"mids":formMids,"rid":rid,"isAdd":isAdd}).then(res=>{
+          console.log(res.data);
+        })
+      }
+      
       this.authDialogVisible = false;
     },
     fetchData() {

@@ -1,6 +1,6 @@
 <template>
-  <div>
-      折旧
+  <div class="app-container">
+      结账
   </div>
 </template>
 

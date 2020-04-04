@@ -53,10 +53,16 @@ export const constantRoutes = [
                name: "首页",
                component: () => import("@/views/dashboard/index"),
                meta: { title: "首页", icon: "dashboard" }
+             },
+             {
+               path: "/personalcenter",
+               name: "个人中心",
+               component: () => import("@/views/personalcenter/index"),
+               meta: { title: "个人中心", icon: "" },
+               hidden: true
              }
            ]
-         },
-
+         }
 
          // 404 page must be placed at the end !!!
          // { path: '*', redirect: '/404', hidden: true }

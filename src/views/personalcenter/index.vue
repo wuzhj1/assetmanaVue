@@ -1,6 +1,6 @@
 <template>
-  <div>
-      资产借用
+  <div class="app-container">
+      个人中心
   </div>
 </template>
 
