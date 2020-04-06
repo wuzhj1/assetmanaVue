@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-      资产变动
+      折旧明细表
   </div>
 </template>
 

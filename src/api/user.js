@@ -75,3 +75,10 @@ export function setUserRole(data) {
   })
 }
 
+export function updatePassword(data) {
+  return request({
+    url: "/api/updatepassword",
+    method: "post",
+    data
+  })
+}
